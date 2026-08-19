@@ -28,8 +28,6 @@ public class TeleOpMode extends LinearOpMode {
                 shooter.shoot();
             }
 
-            // Updates telemetry
-            shooter.updateTelemetry();
         }
     }
 

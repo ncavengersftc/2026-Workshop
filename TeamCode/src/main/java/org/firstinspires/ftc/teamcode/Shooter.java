@@ -18,9 +18,10 @@ public class Shooter extends SubsystemBase {
         shooterMotor.setPower(0.25);
     }
 
-    public void updateTelemetry() {
+    @Override
+    public void periodic() {
+        super.periodic();
         telemetry.addData("Shooter Motor Speed", shooterMotor.getPower());
         telemetry.update();
     }
-
 }
