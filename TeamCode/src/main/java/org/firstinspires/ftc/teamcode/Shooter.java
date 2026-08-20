@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
@@ -11,10 +13,12 @@ public class Shooter extends SubsystemBase {
     public Shooter(){
         outtakeMotorLeft = hardwareMap.get(DcMotor.class,"Outtake Motor Left");
         outtakeMotorRight = hardwareMap.get(DcMotor.class,"Outtake Motor Right");
+        outtakeMotorLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        outtakeMotorRight.setDirection(DcMotorSimple.Direction.FORWARD);
 }
-    public void shoot(){
-        outtakeMotorLeft.setPower(.25);
-        outtakeMotorRight.setPower(-.25);
+    public void shoot(double power) {
+        outtakeMotorLeft.setPower(power);
+        outtakeMotorRight.setPower(power);
     }
 
     public void stop(){
@@ -27,5 +31,12 @@ public class Shooter extends SubsystemBase {
         outtakeMotorLeft.setPower(-.25);
         outtakeMotorRight.setPower(.25);
     }
+    @Override
+    public void periodic() {
+        super.periodic();
+        telemetry.addData("Outtake Motor Left Speed", outtakeMotorLeft.getPower());
+        telemetry.addData("Outtake Motor Right Speed", outtakeMotorRight.getPower());
+        telemetry.update();
+    }
 
-}
+    }
