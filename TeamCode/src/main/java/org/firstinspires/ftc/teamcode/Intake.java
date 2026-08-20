@@ -5,10 +5,10 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.tel
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
 public class Intake extends SubsystemBase {
-    private final DcMotor intakeMotor;
+    private DcMotor intakeMotor;
 
-    public Intake(){
-        intakeMotor= hardwareMap.get(DcMotor.class, "Intake Motor");
+    public Intake(DcMotor intakeMotorInput){
+        intakeMotor = intakeMotorInput;
     }
     public void intake(double power) {
         intakeMotor.setPower(power);
@@ -21,7 +21,7 @@ public class Intake extends SubsystemBase {
     @Override
     public void periodic() {
         super.periodic();
-        telemetry.addData("Intake Motor Speed",intakeMotor.getPower());
+        telemetry.addData("Intake Motor Speed", intakeMotor.getPower());
                 telemetry.update();
 
     }

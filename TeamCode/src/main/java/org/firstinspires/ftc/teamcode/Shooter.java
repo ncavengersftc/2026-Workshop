@@ -8,12 +8,12 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
-    private final DcMotor outtakeMotorLeft;
-    private final DcMotor outtakeMotorRight;
+    private DcMotor outtakeMotorLeft;
+    private DcMotor outtakeMotorRight;
 
-    public Shooter() {
-        outtakeMotorLeft = hardwareMap.get(DcMotor.class, "Outtake Motor Left");
-        outtakeMotorRight = hardwareMap.get(DcMotor.class, "Outtake Motor Right");
+    public Shooter(DcMotor outtakeMotorLeftInput, DcMotor outtakeMotorRightInput) {
+        outtakeMotorLeft = outtakeMotorLeftInput;
+        outtakeMotorRight = outtakeMotorRightInput;
         outtakeMotorLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         outtakeMotorRight.setDirection(DcMotorSimple.Direction.FORWARD);
     }

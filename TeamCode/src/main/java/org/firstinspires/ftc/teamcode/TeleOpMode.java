@@ -1,40 +1,55 @@
 package org.firstinspires.ftc.teamcode;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp
 public class TeleOpMode extends LinearOpMode {
-    private final Shooter shooter;
-    private final Intake intake;
+    private Shooter shooter;
+    private Intake intake;
+
+
+    private DcMotor intakeMotor;
+
+    private DcMotor outtakeMotorLeft;
+    private DcMotor outtakeMotorRight;
 
     public TeleOpMode() {
-        shooter = new Shooter();
-        intake = new Intake();
+
     }
 
     @Override
     public void runOpMode() {
         telemetry.addData("status", "init");
         telemetry.update();
+
+        intakeMotor = hardwareMap.get(DcMotor.class, "Intake Motor");
+        outtakeMotorLeft = hardwareMap.get(DcMotor.class, "Outtake Motor Left");
+        outtakeMotorRight = hardwareMap.get(DcMotor.class, "Outtake Motor Right");
+
+        shooter = new Shooter(outtakeMotorLeft, outtakeMotorRight);
+        intake = new Intake(intakeMotor);
+
         waitForStart();
         while (opModeIsActive()) {
+
             telemetry.addData("status", "running");
             telemetry.update();
-            shooter.shoot(.5);
-            intake.intake(.5);
-            while (gamepad1.b) {
-                shooter.shoot(.5);
-                while (gamepad1.a) {
-                    intake.intake(.5);
-                }
-                while (gamepad1.a) {
-                    intake.stop();
-                }
-                while (gamepad1.b) {
-                    shooter.stop();
-                }
 
+            while (gamepad1.b) {
+                shooter.shoot(.75);
+            }
+            while (gamepad1.a) {
+                intake.intake(.75);
+            }
+            while (gamepad1.x) {
+                intake.stop();
+            }
+            while (gamepad1.y) {
+                shooter.stop();
             }
         }
     }
