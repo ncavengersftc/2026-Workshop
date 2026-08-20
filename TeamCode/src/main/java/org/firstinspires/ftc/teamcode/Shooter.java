@@ -10,18 +10,20 @@ import com.seattlesolvers.solverslib.command.SubsystemBase;
 public class Shooter extends SubsystemBase {
     private final DcMotor outtakeMotorLeft;
     private final DcMotor outtakeMotorRight;
+
     public Shooter() {
-        outtakeMotorLeft= hardwareMap.get(DcMotor.class, "Outtake Motor Left");
-        outtakeMotorRight= hardwareMap.get(DcMotor.class, "Outtake Motor Right");
+        outtakeMotorLeft = hardwareMap.get(DcMotor.class, "Outtake Motor Left");
+        outtakeMotorRight = hardwareMap.get(DcMotor.class, "Outtake Motor Right");
         outtakeMotorLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         outtakeMotorRight.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
-    public void shoot(double power){
+    public void shoot(double power) {
         outtakeMotorLeft.setPower(power);
         outtakeMotorRight.setPower(power);
     }
-    public void stop(){
+
+    public void stop() {
         outtakeMotorLeft.setPower(0);
         outtakeMotorRight.setPower(0);
         outtakeMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -31,7 +33,8 @@ public class Shooter extends SubsystemBase {
     @Override
     public void periodic() {
         super.periodic();
-        telemetry.addData("Outtake Motor Left",outtakeMotorLeft.getPower());
-        telemetry.addData("Outtake Motor Right",outtakeMotorRight.getPower());
+        telemetry.addData("Outtake Motor Left", outtakeMotorLeft.getPower());
+        telemetry.addData("Outtake Motor Right", outtakeMotorRight.getPower());
         telemetry.update();
+    }
 }
