@@ -5,16 +5,24 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.tel
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Shooter extends SubsystemBase {
 
     private final DcMotor outtakeMotorLeft;
     private final DcMotor outtakeMotorRight;
 
-    public Shooter() {
-        outtakeMotorLeft = hardwareMap.get(DcMotor.class, "Outtake Motor Left");
-        outtakeMotorRight = hardwareMap.get(DcMotor.class, "Outtake Motor Right");
+    private final Telemetry telem;
+
+    public Shooter(HardwareMap hMap, Telemetry telem) {
+        outtakeMotorLeft = hMap.get(DcMotor.class, "Outtake Motor Left");
+        outtakeMotorRight = hMap.get(DcMotor.class, "Outtake Motor Right");
+
+        this.telem = telem;
+
         outtakeMotorLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         outtakeMotorRight.setDirection(DcMotorSimple.Direction.FORWARD);
     }
@@ -33,8 +41,8 @@ public class Shooter extends SubsystemBase {
     @Override
     public void periodic() {
         super.periodic();
-        telemetry.addData("Outtake Motor Left Speed", outtakeMotorLeft.getPower());
-        telemetry.addData("Outtake Motor Right Speed", outtakeMotorRight.getPower());
-        telemetry.update();
+        telem.addData("Outtake Motor Left Speed", outtakeMotorLeft.getPower());
+        telem.addData("Outtake Motor Right Speed", outtakeMotorRight.getPower());
+        telem.update();
     }
 }

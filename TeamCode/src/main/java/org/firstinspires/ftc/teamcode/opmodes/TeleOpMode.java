@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.seattlesolvers.solverslib.command.CommandScheduler;
 
 import org.firstinspires.ftc.teamcode.commands.IntakeFuel;
 import org.firstinspires.ftc.teamcode.commands.Shoot;
@@ -16,8 +17,11 @@ public class TeleOpMode extends LinearOpMode {
     private Intake intake;
 
     public void initialize() {
-        shooter = new Shooter();
-        intake = new Intake();
+        shooter = new Shooter(hardwareMap, telemetry);
+        intake = new Intake(hardwareMap);
+
+        CommandScheduler.getInstance().enable();
+
         shooter.setDefaultCommand(new StopShooter(shooter, intake));
         intake.setDefaultCommand(new StopIntake(intake));
     }
@@ -36,23 +40,23 @@ public class TeleOpMode extends LinearOpMode {
         // Runs until driver pressed STOP
         while (opModeIsActive()) {
 
+            CommandScheduler.getInstance().run();
+
             telemetry.addData("Status", "Running");
             telemetry.update();
 
             // Controller mapping
             while (gamepad1.a) {
-                new Shoot(shooter, intake);
+                new Shoot(telemetry, shooter, intake);
             }
 
             while (gamepad1.b) {
                 new IntakeFuel(intake);
             }
 
-            while (gamepad1.y) {
-                intake.stop();
-            }
-
         }
+
+        CommandScheduler.getInstance().reset();
 
     }
 
