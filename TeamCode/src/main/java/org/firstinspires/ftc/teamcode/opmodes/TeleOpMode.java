@@ -6,6 +6,7 @@ import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 import com.seattlesolvers.solverslib.gamepad.GamepadKeys;
 
 import org.firstinspires.ftc.teamcode.commands.IntakeArtifact;
+import org.firstinspires.ftc.teamcode.commands.IntakeTowerShooter;
 import org.firstinspires.ftc.teamcode.commands.RampTransfer;
 import org.firstinspires.ftc.teamcode.commands.ShootArtifacts;
 import org.firstinspires.ftc.teamcode.commands.StopIntake;
@@ -37,6 +38,8 @@ public class TeleOpMode extends CommandOpMode {
         driver.getGamepadButton(GamepadKeys.Button.A).whileHeld(new IntakeArtifact(intake));
         driver.getGamepadButton(GamepadKeys.Button.B).whileHeld(new ShootArtifacts(shooter));
         driver.getGamepadButton(GamepadKeys.Button.X).whileHeld(new RampTransfer(tower));
+        driver.getGamepadButton(GamepadKeys.Button.Y).whileHeld(new IntakeTowerShooter(intake,tower,shooter));
+
 
 
 
