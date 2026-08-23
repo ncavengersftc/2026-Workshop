@@ -43,7 +43,6 @@ public class TeleOpMode extends CommandOpMode {
         tower.setDefaultCommand(new StopTower(telemetry, tower));
 
         drive = new Drive(telemetry, hardwareMap);
-        drive.setDefaultCommand(new DriveCommand(telemetry, drive, driverOp));
 
         driverOp.getGamepadButton(GamepadKeys.Button.A)
                 .whileHeld(new IntakeArtifact(telemetry, intake));
@@ -55,6 +54,7 @@ public class TeleOpMode extends CommandOpMode {
                 .whileHeld(new SpinTower(telemetry, tower));
 
         register(drive);
+        drive.setDefaultCommand(new DriveCommand(telemetry, drive, driverOp));
     }
 
 }

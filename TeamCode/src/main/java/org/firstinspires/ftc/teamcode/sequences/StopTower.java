@@ -14,6 +14,8 @@ public class StopTower extends CommandBase {
     public StopTower(Telemetry telemetry, Tower tower) {
         this.tower = tower;
         this.telemetry = telemetry;
+
+        addRequirements(tower);
     }
 
     @Override

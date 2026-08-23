@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
-import com.seattlesolvers.solverslib.hardware.motors.CRServo;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.seattlesolvers.solverslib.hardware.motors.Motor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -26,20 +26,16 @@ public class Tower extends SubsystemBase {
     }
 
     public void spin(double power) {
-        frontLeft.set(power);
-        frontRight.set(power);
-        backLeft.set(power);
-        backRight.set(power);
+        frontLeft.setPower(power);
+        frontRight.setPower(power);
+        backLeft.setPower(power);
+        backRight.setPower(power);
     }
 
     public void stop() {
-        frontLeft.set(0);
-        frontLeft.setZeroPowerBehavior(Motor.ZeroPowerBehavior.FLOAT);
-        frontRight.set(0);
-        frontRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.FLOAT);
-        backLeft.set(0);
-        backLeft.setZeroPowerBehavior(Motor.ZeroPowerBehavior.FLOAT);
-        backRight.set(0);
-        backRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.FLOAT);
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
     }
 }

@@ -20,11 +20,13 @@ public class DriveCommand extends CommandBase {
         this.drive = drive;
 
         this.driverOp = driverOp;
+
+        addRequirements(drive);
     }
 
     @Override
     public void execute() {
-        drive.drive(driverOp.getRightX(), driverOp.getRightY(), driverOp.getRightX());
+        drive.drive(driverOp.getRightX(), driverOp.getRightY(), driverOp.getLeftX());
     }
 
 }
