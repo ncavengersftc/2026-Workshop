@@ -13,7 +13,7 @@ public class Intakestop extends CommandBase {
 
     }
      @Override
-     public void initialize() {
+    public void initialize() {
         intake.stop();
      }
 
