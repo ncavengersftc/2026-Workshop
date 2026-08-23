@@ -11,6 +11,6 @@ public class IntakeArtifact extends CommandBase {
     }
     @Override
     public void initialize() {
-        intake.intake(0.25);
+        intake.intake(0.75);
     }
 }

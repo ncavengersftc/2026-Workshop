@@ -10,11 +10,11 @@ public class Shooter extends SubsystemBase {
     private final DcMotor outtakeMotorLeft;
 
     public Shooter(HardwareMap hMart) {
-        outtakeMotorRight = hMart.get(DcMotor.class, "OuttakeMotorRight");
-        outtakeMotorLeft = hMart.get(DcMotor.class, "OuttakeMotorLeft");
+        outtakeMotorRight = hMart.get(DcMotor.class, "Outtake Motor Right");
+        outtakeMotorLeft = hMart.get(DcMotor.class, "Outtake Motor Left");
 
-        outtakeMotorRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        outtakeMotorLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        outtakeMotorRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        outtakeMotorLeft.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
     public void shooter(double power) {

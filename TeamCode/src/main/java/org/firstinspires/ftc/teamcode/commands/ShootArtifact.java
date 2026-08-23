@@ -13,6 +13,6 @@ public class ShootArtifact extends CommandBase {
     }
     @Override
     public void initialize(){
-        shooter.shooter(0.5);
+        shooter.shooter(0.75);
     }
 }

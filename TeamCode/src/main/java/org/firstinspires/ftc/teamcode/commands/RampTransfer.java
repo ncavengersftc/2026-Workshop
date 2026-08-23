@@ -14,6 +14,6 @@ public class RampTransfer extends CommandBase {
 
     @Override
     public void initialize() {
-        ramp.transfer(0.25);
+        ramp.transfer(0.75);
     }
 }
