@@ -5,7 +5,7 @@ import com.seattlesolvers.solverslib.command.CommandBase;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
 public class Stopeth extends CommandBase {
-    private Intake intake;
+    private final Intake intake;
 
     public Stopeth(Intake intake) {
         this.intake = intake;
